@@ -48,6 +48,9 @@ app.post("/api/shorturl", async function (req, res) {
   } catch (err) {
     return res.status(400).json({ error: "invalid url1" });
   }
+  dns.lookup(hostname, (err, address) => {
+    if (err) return res.json({ error: "invalid url" });
+  });
   const shortUrl = Math.floor(Math.random() * 100) + 1;
 
   try {
